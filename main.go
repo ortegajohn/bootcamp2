@@ -30,7 +30,7 @@ func test1(c *gin.Context) {
 	// c.Param("Body")
 
 	cfg := finnhub.NewConfiguration()
-    cfg.AddDefaultHeader("X-Finnhub-Token", "TOKEN")
+    cfg.AddDefaultHeader("X-Finnhub-Token", "sandbox_c6n1ihiad3ibta79o21g")
     finnhubClient := finnhub.NewAPIClient(cfg).DefaultApi
     
     // res, _, err := finnhubClient.Quote(context.Background()).Symbol("AAPL").Execute()

@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: foo
-          image: bootcamp2
-          imagePullPolicy: Never
+          image: public.ecr.aws/o2x5s7z9/bootcamp2a
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
 ---
@@ -26,10 +26,19 @@ metadata:
   name: bar
   namespace: default
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     foo: web
   ports:
     - port: 5000
       targetPort: 5000
       nodePort: 30000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: bar
+spec:
+  backend:
+    serviceName: bar
+    servicePort: 5000
